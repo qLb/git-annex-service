@@ -1,0 +1,14 @@
+#!/bin/bash
+
+$(/annex-boot/annex "$1" "$2" "$3" "$4") &
+PID1=$!
+$(sleep 3 && ./annex-boot/proxy "$1" "$5") &
+PID2=$!
+COUNT=2
+while [ $COUNT -eq 2 ]; do
+    COUNT=$(jobs | grep Running | wc -l)
+    echo "COUNT $COUNT"
+    sleep 1
+done
+echo $ANNEX_OUTPUT
+echo $PROXY_OUTPUT

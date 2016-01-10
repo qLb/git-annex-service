@@ -1,0 +1,1 @@
+sudo rm -rf repos/.git ; docker build -t annex . ; docker run -p 7000:7000 -e PORT=7000 -e YOUR_EMAIL=github@speechmarks.com -e YOUR_NAME="Matt Forrester" -t annex
