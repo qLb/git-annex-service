@@ -2,7 +2,12 @@ FROM ubuntu:16.04
 
 MAINTAINER Matthew Forrester <github@speechmarks.com>
 
-ENV REPO_NAME "The Repo"
+# These three environmental variables are meant for customization
+ENV NAME_OF_REPOS The Repository
+ENV YOUR_NAME Mister Anonymous
+ENV YOUR_EMAIL mister@anonymous.com
+
+# Customize these also as per standard docker
 VOLUME /repos /repos
 EXPOSE 7000
 
@@ -10,16 +15,18 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update -y \
     && apt-get install -y \
         git-annex \
+        nginx \
     && apt-get clean -y
 
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y nginx
 RUN mkdir /annex-boot
+
+ENV LOCATION_OF_REPOS /repos
 
 ADD boot /annex-boot/boot
 ADD annex /annex-boot/annex
 ADD proxy /annex-boot/proxy
 ADD nginx.conf.tpl /annex-boot/nginx.conf.tpl
 
-# CMD ["/annex-boot", "/repos", "$REPO_NAME", "$YOUR_NAME", "$YOUR_EMAIL", "7000"]
-CMD /annex-boot/boot "/repos" "$REPO_NAME" "$YOUR_NAME" "$YOUR_EMAIL" "7000"
+CMD ["/annex-boot/annex"]
+# CMD /annex-boot/boot "/repos" "$REPO_NAME" "$YOUR_NAME" "$YOUR_EMAIL" "7000"
 # CMD git -C "$REPO_DIR" annex webapp

@@ -1,0 +1,6 @@
+gitannex:
+  build: ./annex-service
+  ports:
+    - 27017:27017
+  volumes:
+    - ./repos:/repos

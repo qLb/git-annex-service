@@ -1,6 +1,12 @@
 #!/bin/bash
 
-$(/annex-boot/annex "$1" "$2" "$3" "$4") &
+export LOCATION_OF_REPOS="$1"
+export NAME_OF_REPOS="$2"
+export YOUR_NAME="$3"
+export YOUR_EMAIL="$4"
+export PORT="$5"
+
+$(/annex-boot/annex "$LOCATION_OF_REPOS" "$NAME_OF_REPOS" "$YOUR_NAME" "$YOUR_EMAIL") &
 PID1=$!
 $(sleep 3 && ./annex-boot/proxy "$1" "$5") &
 PID2=$!
@@ -10,5 +16,3 @@ while [ $COUNT -eq 2 ]; do
     echo "COUNT $COUNT"
     sleep 1
 done
-echo $ANNEX_OUTPUT
-echo $PROXY_OUTPUT

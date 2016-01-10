@@ -1,17 +1,7 @@
 #!/bin/bash
 
-# Check parameters
-if [ "$#" -ne 4 ]; then
-    echo $#
-    echo "USAGE: boot [LOCATION_OF_REPOS] [NAME_OF_REPOS] [YOUR_NAME] [YOUR_EMAIL]"
-    exit 1
-fi
 
-LOCATION_OF_REPOS="$1"
-NAME_OF_REPOS="$2"
-YOUR_NAME="$3"
-YOUR_EMAIL="$4"
-
+mkdir -p "$LOCATION_OF_REPOS"
 # Initialize Git (if needed)
 if [ ! -f "${LOCATION_OF_REPOS}/.git" ]; then
     echo "NO GIT REPO FOUND... CREATING"
@@ -27,4 +17,4 @@ if [ ! -f "${LOCATION_OF_REPOS}/.git/annex" ]; then
 fi
 
 echo "STARTING GIT ANNEX..."
-git -C "$LOCATION_OF_REPOS" annex webapp
+echo git -C "$LOCATION_OF_REPOS" annex webapp

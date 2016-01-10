@@ -1,9 +1,6 @@
 #!/bin/bash
 
-REPO_DIR=$1
-PORT=$5
-
-URL=$(cat $REPO_DIR/.git/annex/webapp.html  | grep '^<meta.* URL' | sed 's/.* URL=//' | sed 's/".*//')
+URL=$(cat $LOCATION_OF_REPOS/.git/annex/webapp.html  | grep '^<meta.* URL' | sed 's/.* URL=//' | sed 's/".*//')
 PORT=$(echo $URL | sed 's/.*\://' | sed 's/\/.*//');
 AUTH=$(echo $URL | sed 's/.*=//' );
 
