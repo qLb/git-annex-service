@@ -27,6 +27,4 @@ ADD annex /annex-boot/annex
 ADD proxy /annex-boot/proxy
 ADD nginx.conf.tpl /annex-boot/nginx.conf.tpl
 
-CMD ["/annex-boot/annex"]
-# CMD /annex-boot/boot "/repos" "$REPO_NAME" "$YOUR_NAME" "$YOUR_EMAIL" "7000"
-# CMD git -C "$REPO_DIR" annex webapp
+CMD /annex-boot/boot

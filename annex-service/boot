@@ -1,12 +1,6 @@
 #!/bin/bash
 
-export LOCATION_OF_REPOS="$1"
-export NAME_OF_REPOS="$2"
-export YOUR_NAME="$3"
-export YOUR_EMAIL="$4"
-export PORT="$5"
-
-$(/annex-boot/annex "$LOCATION_OF_REPOS" "$NAME_OF_REPOS" "$YOUR_NAME" "$YOUR_EMAIL") &
+/annex-boot/annex &
 PID1=$!
 $(sleep 3 && ./annex-boot/proxy "$1" "$5") &
 PID2=$!

@@ -12,9 +12,9 @@ fi
 
 # Initialize Git Annex (if needed)
 if [ ! -f "${LOCATION_OF_REPOS}/.git/annex" ]; then
-    echo "GIT REPO EXISTS HOWEVER NO ANNEX... CREATING"
+    echo "NO GIT REPO EXISTS HOWEVER NO ANNEX... CREATING"
     git -C "$LOCATION_OF_REPOS" annex init "$NAME_OF_REPOS"
 fi
 
 echo "STARTING GIT ANNEX..."
-echo git -C "$LOCATION_OF_REPOS" annex webapp
+git -C "$LOCATION_OF_REPOS" annex webapp

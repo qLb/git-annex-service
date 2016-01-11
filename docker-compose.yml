@@ -1,6 +1,11 @@
 gitannex:
-  build: ./annex-service
+  #build: ./annex-service
+  image: annex
+  environment:
+    NAME_OF_REPOS: "The Repository"
+    YOUR_NAME: "Mister Anonymous"
+    YOUR_EMAIL: "mister@anonymous.com"
   ports:
-    - 27017:27017
+    - 7000:7000
   volumes:
-    - ./repos:/repos
+    - ./annex-service/repos:/repos
