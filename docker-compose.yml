@@ -9,3 +9,4 @@ gitannex:
     - 7000:7000
   volumes:
     - ./annex-service/repos:/repos
+    - ./annex-service/ssh_keys:/ssh_keys

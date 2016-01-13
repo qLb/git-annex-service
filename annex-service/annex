@@ -16,5 +16,14 @@ if [ ! -f "${LOCATION_OF_REPOS}/.git/annex" ]; then
     git -C "$LOCATION_OF_REPOS" annex init "$NAME_OF_REPOS"
 fi
 
+PRIVATE_SSH_KEY=$(ls /ssh_keys/id_?sa)
+if [ -z "$PRIVATE_SSH_KEY" ]; then
+    echo "NO SSH KEYS FOUND... IF DESIRED PLACE IN VOLUME /ssh_keys with name matching id_?sa"
+else
+    echo "SSH_KEYS_FOUND $PRIVATE_SSH_KEY"
+    mkdir -p $HOME/.ssh
+    ln -s $PRIVATE_SSH_KEY $HOME/.ssh/
+fi
+
 echo "STARTING GIT ANNEX..."
 git -C "$LOCATION_OF_REPOS" annex webapp
