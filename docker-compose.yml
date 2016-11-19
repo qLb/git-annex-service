@@ -1,12 +1,26 @@
-gitannex:
-  #build: ./annex-service
-  image: annex
-  environment:
-    NAME_OF_REPOS: "The Repository"
-    YOUR_NAME: "Mister Anonymous"
-    YOUR_EMAIL: "mister@anonymous.com"
-  ports:
-    - 7000:7000
-  volumes:
-    - ./annex-service/repos:/repos
-    - ./annex-service/ssh_keys:/ssh_keys
+version: "2"
+
+services:
+
+  gitannex:
+    build: ./annex-service
+    container_name: volume
+    image: annex
+    environment:
+      NAME_OF_REPOS: "Main Repository"
+      YOUR_NAME: "Anonymous User"
+      YOUR_EMAIL: "qlb@tagurl.io"
+      VIRTUAL_HOST: "vol.tagurl.io"
+      LETSENCRYPT_EMAIL: "qlb@tagurl.io"
+      LETSENCRYPT_HOST: "vol.tagurl.io"
+    expose: 
+      - "7000"
+    volumes:
+      - ./annex-service/repos:/repos
+      - ./annex-service/ssh_keys:/ssh_keys
+    restart: always
+
+networks:
+  default:
+    external:
+      name: nginx_default
